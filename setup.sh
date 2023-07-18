@@ -70,6 +70,8 @@ main() {
   softlink_dirs valid_dirs
 
 }
-
+#create setup command
+#create destroy command, add warning
+#add --help 
 
 main
