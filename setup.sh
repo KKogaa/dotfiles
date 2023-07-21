@@ -6,9 +6,6 @@ RED="\033[0;31m"
 CYAN="\033[0;36m"
 NC='\033[0m'
 
-EXCEPT_DIRS=("tmux")
-
-
 walk_dir_names() {
   local -n directory_list=$1
   directory_list=()
@@ -30,7 +27,7 @@ dir_exists(){
 }
 
 dir_in_exclusion_list(){
-  exclusion_list=("tmux" "other")
+  exclusion_list=("tmux" "zsh", "install")
   for excluded_item in "${exclusion_list[@]}"; do
     if [[ "$excluded_item" == "$1" ]]; then
       echo -e "${RED}[WARNING] Found ${1} in exclusion list.${NC}"

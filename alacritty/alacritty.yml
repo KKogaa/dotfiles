@@ -34,14 +34,14 @@ env:
   LANG: "en_US.UTF-8"
 
 window:
-  startup_mode: "Maximized"
+  startup_mode: Maximized
   padding:
     x: 20
     y: 20
 
 font:
   normal:
-    family: "Hack" 
+    family: "Hack"
     style: Regular
 
   bold:
