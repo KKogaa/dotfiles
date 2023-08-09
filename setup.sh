@@ -65,6 +65,9 @@ main() {
   validate_if_dirs_exist valid_dirs
 
   softlink_dirs valid_dirs
+ 
+  # TODO: setup tmux and zsh
+  # TODO: install nerd fonts Hack
 
 }
 #create setup command
