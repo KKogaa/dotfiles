@@ -9,6 +9,7 @@ NC='\033[0m'
 REACTIVE=false
 WEBFLUX=false
 STANDARD=false
+MAVEN=false
 case $1 in
     -r|--reactive-create)
         REACTIVE=true
@@ -19,8 +20,10 @@ case $1 in
     -s|--standard-create)
         STANDARD=true
         ;;
-    -h|--help)
-        echo "Usage: $0 [-w|--webflux-create] [-s|--standard-create]"
+    -m|--maven-create)
+        MAVEN=true
+        ;;
+    -h|--help) echo "Usage: $0 [-w|--webflux-create] [-s|--standard-create]"
         echo "Options:"
         echo "  -w, --webflux-create : Create a project with WebFlux dependencies"
         echo "  -s, --standard-create : Create a standard project without WebFlux"
@@ -48,4 +51,10 @@ if [[ "$STANDARD" = true ]];then
   echo "${GREEN} Creating web project named: $2 with group $3 at location $4 ${NC}"
   (cd $4/ && spring init --dependencies=web,data-jpa,postgresql,lombok --build=gradle --type=gradle-project --java-version=17 --packaging=jar --artifact-id=$2 --group-id=$3 --name=$2 $2) 
 fi
+
+if [[ "$MAVEN" = true ]];then
+  echo "${GREEN} Creating maven project named: $2 with group $3 at location $4 ${NC}"
+  (cd $4/ && mvn archetype:generate -DgroupId=$3 -DartifactId=$2 -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false) 
+fi
+
 

@@ -8,8 +8,6 @@ lsp.ensure_installed({
   'lua_ls',
 })
 
-
-
 lsp.configure('lua_ls', {
   settings = {
     Lua = {
