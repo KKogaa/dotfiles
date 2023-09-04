@@ -19,3 +19,12 @@ then
 else
   echo "Docker Compose already installed."
 fi
+
+if ! command -v gh &> /dev/null
+then
+  echo "Github cli could not be found"
+  echo "Installing github cli"
+  pacman -S github-cli 
+else
+  echo "Github cli already installed."
+fi
