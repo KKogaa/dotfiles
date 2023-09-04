@@ -64,6 +64,7 @@ main() {
   local valid_dirs
   validate_if_dirs_exist valid_dirs
 
+  #TODO: replace this with an instalation on each folder
   softlink_dirs valid_dirs
  
   # TODO: setup tmux and zsh
