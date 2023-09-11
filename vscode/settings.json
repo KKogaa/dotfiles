@@ -1,0 +1,135 @@
+{
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "java.semanticHighlighting.enabled": true,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "editor.formatOnSave": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "redhat.telemetry.enabled": true,
+    "vim.useSystemClipboard": true,
+    "vim.insertModeKeyBindings": [
+    ],
+    "vim.visualModeKeyBindings": [
+        //copy to system clipboard
+        {
+            "before": [
+                "<C-c>"
+            ],
+            "after": [
+                "\"",
+                "+",
+                "y"
+            ]
+        },
+        //paste to system clipboard
+        {
+            "before": [
+                "<C-v>"
+            ],
+            "after": [
+                "\"",
+                "+",
+                "p"
+            ]
+        },
+    ],
+    // For normal mode
+    "vim.normalModeKeyBindings": [
+        //copy to system clipboard
+        {
+            "before": [
+                "<C-c>"
+            ],
+            "after": [
+                "\"",
+                "+",
+                "y"
+            ]
+        },
+        //paste to system clipboard
+        {
+            "before": [
+                "<C-v>"
+            ],
+            "after": [
+                "\"",
+                "+",
+                "p"
+            ]
+        },
+        //find files like in telescope
+        {
+            "before" : ["<leader>", "p", "f"],
+            "commands" : ["workbench.action.quickOpen"]
+        },
+        //comment files like nerd-commenter
+        {
+           "before": [
+                "g",
+                "c"
+            ],
+            "commands": [
+                "editor.action.commentLine",
+            ],
+        },
+        //navigation 
+        // { "before": ["<S-h>"], "commands": [":bprevious"] },
+        // { "before": ["<S-l>"], "commands": [":bnext"] },
+
+        //splits for some reason they are inverted
+        { "before": ["leader", "s"], "commands": [":vsplit"] },
+        { "before": ["leader", "v"], "commands": [":split"] },
+
+        //panes
+        {
+            "before": ["leader", "h"],
+            "commands": ["workbench.action.focusLeftGroup"]
+        },
+        {
+            "before": ["leader", "j"],
+            "commands": ["workbench.action.focusBelowGroup"]
+        },
+        {
+            "before": ["leader", "k"],
+            "commands": ["workbench.action.focusAboveGroup"]
+        },
+        {
+            "before": ["leader", "l"],
+            "commands": ["workbench.action.focusRightGroup"]
+        },
+    ],
+    "editor.inlineSuggest.enabled": true,
+    // "github.copilot.enable": {
+    //     "*": true,
+    //     "yaml": false,
+    //     "plaintext": true,
+    //     "markdown": false,
+    //     "java": true
+    // },
+    "mssql.connections": [],
+    "editor.accessibilitySupport": "off",
+    "remote.SSH.remotePlatform": {
+        "200.16.4.64": "linux"
+    },
+    "autoDocstring.docstringFormat": "sphinx",
+    "vim.statusBarColors.replace": "",
+    // vim leader key
+    "vim.leader": " ",
+    // "workbench.editor.limit.enabled": true,
+    // "workbench.editor.limit.value": 1,
+    "editor.minimap.enabled": false,
+    "editor.lineNumbers": "relative"
+}
