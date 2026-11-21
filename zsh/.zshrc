@@ -1,5 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+# fpath+=(~/.zsh_completions)
+# autoload -U compinit
+# compinit
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -129,3 +132,45 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+autoload -U compinit; compinit
+
+# pnpm
+export PNPM_HOME="/home/kkogaa/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Created by `pipx` on 2025-01-03 18:19:00
+export PATH="$PATH:/home/kkogaa/.local/bin"
+
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# Turso
+export PATH="$PATH:/home/kkogaa/.turso"
+
+# machine-local secrets (tokens etc.) live in ~/.zshrc.local, which is not tracked
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+# opencode
+export PATH=/home/kkogaa/.opencode/bin:$PATH
+
+# Azure CLI profile switcher (work / personal) — provides `azp`
+[ -f "$HOME/.config/azprofile/azp.sh" ] && source "$HOME/.config/azprofile/azp.sh"
+
+# >>> headroom persistent env >>>
+export HEADROOM_PORT="8787"
+export HEADROOM_HOST="127.0.0.1"
+export HEADROOM_MODE="cache"
+export HEADROOM_BACKEND="anthropic"
+export HEADROOM_TELEMETRY="off"
+export ANTHROPIC_BASE_URL="http://127.0.0.1:8787"
+export ENABLE_TOOL_SEARCH="true"
+export COPILOT_PROVIDER_TYPE="anthropic"
+export COPILOT_PROVIDER_BASE_URL="http://127.0.0.1:8787"
+# <<< headroom persistent env <<<

@@ -1,0 +1,24 @@
+-- return {
+--   {
+--     "typescript-language-server/typescript-language-server",
+--     dependencies = { "nvim-telescope/telescope.nvim", },
+--     ft = "typescript",
+--   },
+--   {
+--     "https://gitlab.com/schrieveslaach/sonarlint.nvim",
+--     ft = "java",
+--     opts = {
+--       server = {
+--         cmd = {
+--           'sonarlint-language-server',
+--           '-stdio',
+--           '-analyzers',
+--           vim.fn.expand(vim.fn.stdpath'data' .. '/mason/packages/sonarlint-language-server/extension/analyzers/sonarjs.jar'),
+--         }
+--       },
+--       filetypes = {'typescript'}
+--     }
+--   },
+-- }
+
+return {}

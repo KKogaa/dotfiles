@@ -1,7 +1,8 @@
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
+  version = "^0.2", -- 0.1.x (frozen since 2024) breaks file previews with current nvim-treesitter
   dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-ui-select.nvim" },
+  cmd = "Telescope", -- also load when :Telescope is typed, not only from the keys below
   keys = {
     { "<C-p>", "<cmd>Telescope git_files<CR>" },
     { "<leader>pf", "<cmd>Telescope find_files<CR>" },
