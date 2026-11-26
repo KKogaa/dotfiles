@@ -123,8 +123,11 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # aliases
-alias ls='exa'
-alias htop='btm'
+# eza on Arch/EndeavourOS (exa was dropped there), exa on Debian/WSL
+if command -v eza &> /dev/null; then alias ls='eza'
+elif command -v exa &> /dev/null; then alias ls='exa'
+fi
+command -v btm &> /dev/null && alias htop='btm'
 
 # tmux
 # starts a new tmux session when terminal opens
@@ -142,7 +145,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 autoload -U compinit; compinit
 
 # pnpm
-export PNPM_HOME="/home/kkogaa/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -150,7 +153,7 @@ esac
 # pnpm end
 
 # Created by `pipx` on 2025-01-03 18:19:00
-export PATH="$PATH:/home/kkogaa/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Java 21 (path differs per distro)
 for jdk in /usr/lib/jvm/java-21-openjdk /usr/lib/jvm/java-21-openjdk-amd64; do
@@ -163,13 +166,13 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv &> /dev/null && eval "$(pyenv init - zsh)"
 
 # Turso
-export PATH="$PATH:/home/kkogaa/.turso"
+export PATH="$PATH:$HOME/.turso"
 
 # machine-local secrets (tokens etc.) live in ~/.zshrc.local, which is not tracked
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 # opencode
-export PATH=/home/kkogaa/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
 
 # Azure CLI profile switcher (work / personal) — provides `azp`
 [ -f "$HOME/.config/azprofile/azp.sh" ] && source "$HOME/.config/azprofile/azp.sh"
@@ -178,13 +181,13 @@ export PATH=/home/kkogaa/.opencode/bin:$PATH
 alias copilot-gh='copilot --enable-all-github-mcp-tools --allow-tool="github-mcp-server"'
 
 # Added by Antigravity CLI installer
-export PATH="/home/kkogaa/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Claude Code: enable experimental Code Mode
 export CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1
 
 # WSL: open links in the Windows browser
-[ -x "$HOME/.local/bin/wsl-browser" ] && export BROWSER="$HOME/.local/bin/wsl-browser"
+[[ -n $WSL_DISTRO_NAME && -x "$HOME/.local/bin/wsl-browser" ]] && export BROWSER="$HOME/.local/bin/wsl-browser"
 
 # headroom proxy: only route through it on machines where it is installed
 if command -v headroom &> /dev/null; then

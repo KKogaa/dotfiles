@@ -1,38 +1,22 @@
 #!/usr/bin/env bash
+# Links tmux/.tmux.conf to ~/.tmux.conf. Run as your user (not with sudo), on
+# Debian/WSL or Arch/EndeavourOS. The status line reads tmux/status.sh from
+# ~/dotfiles, so clone the repo there.
 
 GREEN='\033[0;32m'
-YELLOW="\033[0;33m"
 RED="\033[0;31m"
-CYAN="\033[0;36m"
 NC='\033[0m'
 
-
 main() {
-  if [[ $EUID -ne 0 ]]; then
-    echo "${RED}Error: This script must be run as root${NC}" 
+  if ! command -v tmux &> /dev/null; then
+    echo -e "${RED}tmux isn't installed. Aborting.${NC}"
     exit 1
   fi
 
-  test type tmux >/dev/null 2>&1 && echo "TMUX isn't installed. Aborting." && exit 1
-  ln -sf "$PWD/.tmux.conf" "$HOME/.tmux.conf"
-
-  if ! command -v spotifycli &> /dev/null
-  then
-    echo "Spotifycli could not be found"
-    echo "Installing Spotifycli"
-
-    INSTALL_DIR="/usr/local/bin"
-    COMMAND_NAME="spotifycli"
-
-    cp spotifycli.sh "$INSTALL_DIR/$COMMAND_NAME"
-    chmod +x "$INSTALL_DIR/$COMMAND_NAME"
-
-    echo "${GREEN}Installation complete of ${COMMAND_NAME} ${NC}"
-  else
-    echo "Spotifycli already installed."
-    exit
-  fi
-
+  local dir
+  dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  ln -sf "$dir/.tmux.conf" "$HOME/.tmux.conf"
+  echo -e "${GREEN}Linked $HOME/.tmux.conf -> $dir/.tmux.conf${NC}"
 }
 
 main

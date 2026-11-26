@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **zsh**: Go, Java 21, pyenv, sonar-scanner and nvim paths are picked by what exists on the machine, so the same file works on Debian/WSL and the other machine.
 - **zsh**: the headroom proxy env (including `ANTHROPIC_BASE_URL`) is only set where `headroom` is installed.
 - **nvim/java**: the custom checkstyle formatter profile is used only when `~/Code/checkstyle.xml` exists.
+- **zsh**: `ls` uses `eza` (Arch/EndeavourOS) or `exa` (Debian/WSL), whichever is installed; `htop` → `btm` only when `btm` is installed; `BROWSER` is set only under WSL; home paths use `$HOME`.
+- **tmux, zsh**: `install.sh` scripts run as your user from any directory; tmux no longer needs root (under sudo on Arch it linked `/root/.tmux.conf`) and no longer installs the old `spotifycli`, which `status.sh` replaced.
 
 ## 2026-11-21
 

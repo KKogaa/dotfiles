@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
+# Links zsh/.zshrc to ~/.zshrc. Put machine-local secrets in ~/.zshrc.local.
 
 GREEN='\033[0;32m'
-YELLOW="\033[0;33m"
-RED="\033[0;31m"
-CYAN="\033[0;36m"
 NC='\033[0m'
 
 main() {
-  ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
+  local dir
+  dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  ln -sf "$dir/.zshrc" "$HOME/.zshrc"
+  echo -e "${GREEN}Linked $HOME/.zshrc -> $dir/.zshrc${NC}"
 }
 
 main
