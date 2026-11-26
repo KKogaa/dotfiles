@@ -85,7 +85,7 @@ return {
 
       -- enables every mason-installed server; jdtls is started by nvim-jdtls in ftplugin/java.lua
       require 'mason-lspconfig'.setup({
-        automatic_enable = { exclude = { 'jdtls' } },
+        automatic_enable = { exclude = { 'jdtls', 'stylua' } }, -- stylua formats through conform; Mason's older builds have no --lsp
       })
     end
   }

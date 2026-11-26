@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **zsh**: the headroom proxy env (including `ANTHROPIC_BASE_URL`) is only set where `headroom` is installed.
 - **nvim/java**: the custom checkstyle formatter profile is used only when `~/Code/checkstyle.xml` exists.
 - **zsh**: `ls` uses `eza` (Arch/EndeavourOS) or `exa` (Debian/WSL), whichever is installed; `htop` → `btm` only when `btm` is installed; `BROWSER` is set only under WSL; home paths use `$HOME`.
+- **nvim/lsp**: `stylua` is no longer started as a language server (conform already formats Lua with it, and Mason's older stylua builds have no `--lsp`).
 - **tmux, zsh**: `install.sh` scripts run as your user from any directory; tmux no longer needs root (under sudo on Arch it linked `/root/.tmux.conf`) and no longer installs the old `spotifycli`, which `status.sh` replaced.
 
 ## 2026-11-21
