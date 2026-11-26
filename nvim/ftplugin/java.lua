@@ -3,6 +3,7 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local jdtls = require('jdtls')
 local jdtls_dir = vim.fn.stdpath'data' .. '/mason/packages/jdtls'
 local jar_dir = vim.fn.glob(jdtls_dir .. '/plugins/org.eclipse.equinox.launcher_*.jar')
+local checkstyle = os.getenv('HOME') .. '/Code/checkstyle.xml'
 
 local config = {
   cmd = {
@@ -24,12 +25,13 @@ local config = {
 
   settings = {
     java = {
-      format = {
+      -- use the custom formatter profile only on machines that have it
+      format = vim.fn.filereadable(checkstyle) == 1 and {
         settings = {
-          url = os.getenv('HOME') .. '/Code/checkstyle.xml',
+          url = checkstyle,
           profile = "Custom",
         },
-      },
+      } or nil,
       contentProvider = { preferred = "fernflower" },
       completion = {
         favoriteStaticMembers = { "org.mockito.Mockito.*" },

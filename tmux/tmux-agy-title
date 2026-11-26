@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Print the current Antigravity (agy) conversation title for a tmux pane.
+# Usage: tmux-agy-title <pane_pid> [pane_current_path]
+# agy holds presence/<conversation-id>.lock open; the title lives in annotations/<id>.pbtxt
+dir="$HOME/.gemini/antigravity-cli"
+pane_pid="$1"; fallback="${2##*/}"
+pid=$(pgrep -P "$pane_pid" -x agy | head -1)
+[ -z "$pid" ] && [ "$(cat /proc/$pane_pid/comm 2>/dev/null)" = agy ] && pid=$pane_pid
+id=""
+if [ -n "$pid" ]; then
+  id=$(ls -l /proc/$pid/fd 2>/dev/null | sed -n 's|.*/presence/\([^/]*\)\.lock$|\1|p' | head -1)
+fi
+title=""
+[ -n "$id" ] && [ -f "$dir/annotations/$id.pbtxt" ] && \
+  title=$(sed -n 's/^title:"\(.*\)"$/\1/p' "$dir/annotations/$id.pbtxt" | head -1)
+[ -z "$title" ] && title="$fallback"
+[ ${#title} -gt 30 ] && title="${title:0:29}…"
+printf '%s' "$title"

@@ -22,6 +22,7 @@ return {
     formatters_by_ft = {
       typescript = { "prettier" },
       javascript = { "prettier" },
+      typescriptreact = { "prettier" },
       python = { "black" },
       Go = { "gofumpt" },
       lua = { "stylua" },

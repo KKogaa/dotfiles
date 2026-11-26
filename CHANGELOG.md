@@ -3,6 +3,20 @@
 All notable changes to these dotfiles are recorded here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-11-26
+
+### Added
+
+- **tmux**: window tabs show the pane title (the task Claude Code / opencode is on), the directory name for plain shells, or the Antigravity conversation title via `tmux/tmux-agy-title`; the current window is marked with `▶`.
+- **zsh**: `copilot-gh` alias, Antigravity CLI path, Claude Code Code Mode, sonar-scanner and `/opt/nvim-linux64` paths, and `BROWSER` set to `wsl-browser` on WSL.
+- **nvim**: copilot also for Lua and Rust; prettier formats `typescriptreact`.
+
+### Changed
+
+- **zsh**: Go, Java 21, pyenv, sonar-scanner and nvim paths are picked by what exists on the machine, so the same file works on Debian/WSL and the other machine.
+- **zsh**: the headroom proxy env (including `ANTHROPIC_BASE_URL`) is only set where `headroom` is installed.
+- **nvim/java**: the custom checkstyle formatter profile is used only when `~/Code/checkstyle.xml` exists.
+
 ## 2026-11-21
 
 ### Added

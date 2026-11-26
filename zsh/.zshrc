@@ -104,9 +104,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
-export GOROOT=/usr/lib/go
+# Go: /usr/local/go (official tarball) when present, else the distro package
+if [ -d /usr/local/go ]; then export GOROOT=/usr/local/go; else export GOROOT=/usr/lib/go; fi
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+# sonar scanner
+[ -d /opt/sonar-scanner/bin ] && export PATH="$PATH:/opt/sonar-scanner/bin"
+
+# neovim tarball install
+[ -d /opt/nvim-linux64/bin ] && export PATH="$PATH:/opt/nvim-linux64/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -145,11 +152,15 @@ esac
 # Created by `pipx` on 2025-01-03 18:19:00
 export PATH="$PATH:/home/kkogaa/.local/bin"
 
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
-export PATH=$JAVA_HOME/bin:$PATH
+# Java 21 (path differs per distro)
+for jdk in /usr/lib/jvm/java-21-openjdk /usr/lib/jvm/java-21-openjdk-amd64; do
+  if [ -d "$jdk" ]; then export JAVA_HOME="$jdk"; export PATH=$JAVA_HOME/bin:$PATH; break; fi
+done
+unset jdk
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+command -v pyenv &> /dev/null && eval "$(pyenv init - zsh)"
 
 # Turso
 export PATH="$PATH:/home/kkogaa/.turso"
@@ -163,6 +174,20 @@ export PATH=/home/kkogaa/.opencode/bin:$PATH
 # Azure CLI profile switcher (work / personal) — provides `azp`
 [ -f "$HOME/.config/azprofile/azp.sh" ] && source "$HOME/.config/azprofile/azp.sh"
 
+# copilot with all github-mcp-server tools pre-approved
+alias copilot-gh='copilot --enable-all-github-mcp-tools --allow-tool="github-mcp-server"'
+
+# Added by Antigravity CLI installer
+export PATH="/home/kkogaa/.local/bin:$PATH"
+
+# Claude Code: enable experimental Code Mode
+export CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1
+
+# WSL: open links in the Windows browser
+[ -x "$HOME/.local/bin/wsl-browser" ] && export BROWSER="$HOME/.local/bin/wsl-browser"
+
+# headroom proxy: only route through it on machines where it is installed
+if command -v headroom &> /dev/null; then
 # >>> headroom persistent env >>>
 export HEADROOM_PORT="8787"
 export HEADROOM_HOST="127.0.0.1"
@@ -174,3 +199,4 @@ export ENABLE_TOOL_SEARCH="true"
 export COPILOT_PROVIDER_TYPE="anthropic"
 export COPILOT_PROVIDER_BASE_URL="http://127.0.0.1:8787"
 # <<< headroom persistent env <<<
+fi
